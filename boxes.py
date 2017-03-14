@@ -40,7 +40,7 @@ class BoxesGame(ConnectionListener):
         self.gameid = None
         self.num = None
         self.owner = [[0 for x in range(6)] for y in range(6)]
-        self.Connect()
+        self.Connect(('shopete.ddns.net', 1488))
 
         self.running=False
         while not self.running:
