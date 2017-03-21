@@ -4,7 +4,7 @@ import PodSixNet
 from PodSixNet.Connection import ConnectionListener, connection
 from time import sleep
 
-class BoxesGame(ConnectionListener):
+class LinesGame(ConnectionListener):
 
     def initGraphics(self):
         self.normallinev=pygame.image.load("normalline.png")
@@ -30,7 +30,7 @@ class BoxesGame(ConnectionListener):
         self.boardh = [[False for x in range(6)] for y in range(7)]
         self.boardv = [[False for x in range(7)] for y in range(6)]
         self.screen = pygame.display.set_mode((width, height))
-        pygame.display.set_caption("Boxes")
+        pygame.display.set_caption("Lines")
         self.clock=pygame.time.Clock()
         self.initGraphics()
         self.turn = True
@@ -41,7 +41,7 @@ class BoxesGame(ConnectionListener):
         self.num = None
         self.owner = [[0 for x in range(6)] for y in range(6)]
         self.Connect(('localhost', 1488))
-        
+
 
         self.running=False
         while not self.running:
@@ -191,7 +191,7 @@ class BoxesGame(ConnectionListener):
     def Network_close(self, data):
         exit()
 
-bg=BoxesGame()
+bg=LinesGame()
 while 1:
     if bg.update()==1:
         break

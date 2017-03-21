@@ -3,7 +3,7 @@ import PodSixNet.Server
 from time import sleep
 
 class ClientChannel(PodSixNet.Channel.Channel):
-    
+
     def Network(self, data):
         print data
 
@@ -15,7 +15,7 @@ class ClientChannel(PodSixNet.Channel.Channel):
         self.gameid = data["gameid"]
         self._server.placeLine(hv, x, y, data, self.gameid, num)
 
-class BoxesServer(PodSixNet.Server.Server):
+class LinesServer(PodSixNet.Server.Server):
 
     def __init__(self, *args, **kwargs):
         PodSixNet.Server.Server.__init__(self, *args, **kwargs)
@@ -101,7 +101,7 @@ class Game:
             self.player0.Send({"action":"yourturn", "torf":True if self.turn==0 else False})
 
 print "STARTING SERVER ON LOCALHOST"
-boxesServe=BoxesServer(localaddr=('192.168.1.88', 1488))
+linesServe=LinesServer(localaddr=('192.168.1.88', 1488))
 while True:
-    boxesServe.tick()
+    linesServe.tick()
     sleep(0.01)
