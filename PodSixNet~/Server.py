@@ -1,10 +1,8 @@
 import socket
 import sys
-from Handler import Handler
 
 from async import poll, asyncore
 from Channel import Channel
-
 
 class Server(asyncore.dispatcher):
 	channelClass = Channel
@@ -23,18 +21,14 @@ class Server(asyncore.dispatcher):
 	
 	def handle_accept(self):
 		try:
-                        print "Waiting coneccion to be accepted..."
 			conn, addr = self.accept()
-                        print "ACCEPTED"
 		except socket.error:
 			print 'warning: server accept() threw an exception'
 			return
 		except TypeError:
 			print 'warning: server accept() threw EWOULDBLOCK'
 			return
-                print "Trying to securice the connection..."
-	        Handler(conn)
-                print "Securiced"
+		
 		self.channels.append(self.channelClass(conn, addr, self, self._map))
 		self.channels[-1].Send({"action": "connected"})
 		if hasattr(self, "Connected"):

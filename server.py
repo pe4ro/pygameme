@@ -101,7 +101,7 @@ class Game:
             self.player0.Send({"action":"yourturn", "torf":True if self.turn==0 else False})
 
 print "STARTING SERVER ON LOCALHOST"
-linesServe=LinesServer(localaddr=('192.168.1.88', 1488))
+linesServe=LinesServer(localaddr=('localhost', 1488))
 while True:
     linesServe.tick()
     sleep(0.01)
